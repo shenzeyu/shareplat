@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>MainDemo02</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="easyui.css" />
+    <link rel="stylesheet" type="text/css" href="icon.css" />
+    <link rel="stylesheet" type="text/css" href="demo.css" />
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.easyui.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#dg').datagrid({
+                url: 'datagrid_data1.js',
+                method: 'get',
+                title: 'Context Menu on DataGrid',
+                iconCls: 'icon-save',
+                width: 700,
+                height: 250,
+                fitColumns: true,
+                singleSelect: true,
+                rownumbers: true,
+                pagination: true,
+                columns: [[
+					{ field: 'itemid', title: 'Item ID', width: 80 },
+					{ field: 'productid', title: 'Product ID', width: 120 },
+					{ field: 'listprice', title: 'List Price', width: 80, align: 'right' },
+					{ field: 'unitcost', title: 'Unit Cost', width: 80, align: 'right' },
+					{ field: 'attr1', title: 'Attribute', width: 250 },
+					{ field: 'status', title: 'Status', width: 60, align: 'center' }
+                ]],
+            });
+            $("#btn").click(function () {
+                var savedata;
+                savedata.uname = "123";      //举个例子  也可以整理一下用表格数据
+                savedata.pwd = "456";
+                $.ajax({
+                    url: "#",                  //这是一个处理类文件，用什么语言写都可以，前台数据会传到这个文件中
+                    type: "post",
+                    data: final,
+                    datatype: Object,
+                    success: function (datatemp, textStatus, jqXHR) {
+                        if (datatemp == "true") {
+                            $.messager.alert("提示", "保存成功");
+                        } else {
+                            var info = "某些数据不合理！！！";
+                            $.messager.alert("警告", info);
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $.messager.alert("错误", jqXHR)
+                    }
+                })
+            })
+        });
+    </script>
+</head>
+<body>
+    <h2>Basic Layout  js动态加载数据02</h2>
+    <p>The layout contains north,south,west,east and center regions.</p>
+    <div style="margin:20px 0;"></div>
+    <div class="easyui-layout" style="width:700px;height:350px;">
+        <div data-options="region:'north'" style="height:50px">北</div>
+        <div data-options="region:'east',split:true" title="East" style="width:100px;">东</div>
+        <div data-options="region:'west',split:true" title="West" style="width:100px;">西</div>
+        <div data-options="region:'center',title:'Main Title',iconCls:'icon-ok'">
+            <table id="dg" class="easyui-datagrid"></table>
+        </div>
+        <div data-options="region:'south',split:true" style="height:50px;">南
+            <input id="btn" value="保存"/>
+        </div>
+    </div>
+</body>
+</html>

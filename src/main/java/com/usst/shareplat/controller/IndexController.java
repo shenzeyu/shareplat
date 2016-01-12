@@ -10,7 +10,7 @@ public class IndexController {
 	Logger log = LoggerFactory.getLogger(IndexController.class);
 	@RequestMapping(value = "hello")
 	public String helloWorld(){
-		return "index";
+		return "MainDemo";
 	}
 	
 }
