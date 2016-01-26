@@ -22,7 +22,7 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <!-- 显式指定Mapper文件位置 -->
-		<property name="mapperLocations" value="classpath*:/mybatis/*Mapper.xml" />
+		<property name="mapperLocations" value="classpath*:/mybatis/sqlmap/*mapper.xml" />
 		<!-- mybatis配置文件路径 -->
         <property name="configLocation" value="classpath:/mybatis/config.xml"/>    
     </bean>
@@ -36,7 +36,7 @@
     <!-- 扫描basePackage接口 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
     	<!-- 映射器接口文件的包路径， -->
-        <property name="basePackage" value="com.jikexueyuan.dao" />
+        <property name="basePackage" value="com.usst.shareplat.dao" />
     </bean>
 
     <!-- 使用annotation定义事务 -->
